@@ -8,3 +8,4 @@ btn.addEventListener('click', () => {
 fa__x.addEventListener('click', () => {
     form__box.classList.remove('active')
 })
+

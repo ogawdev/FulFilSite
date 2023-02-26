@@ -6,7 +6,7 @@ const User = require("./model/userSchema");
 
 const app = express();
 
-require("./model/userSchema");
+require("./model/userSchema"); 
 // Database configuration
 mongoose.set("strictQuery", false);
 mongoose.connect(process.env.MONGO_URL, () => {
@@ -65,11 +65,6 @@ app.get("/", (req, res) => {
 app.post("/", async (req, res) => {
   try {
     const { name, phone } = req.body;
-    console.log(name, phone);
-    const regex = /^((\+)?998)?(90|91|93|94|95|97|98)[0-9]{7}$/;
-
-    if (!regex.test(phone))
-      throw new Error("Telefon raqam no'to'g'ri formatda");
 
     await User.create({
       name,
