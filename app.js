@@ -6,7 +6,7 @@ const User = require("./model/userSchema");
 
 const app = express();
 
-require("./model/userSchema"); 
+require("./model/userSchema");
 // Database configuration
 mongoose.set("strictQuery", false);
 mongoose.connect(process.env.MONGO_URL, () => {
@@ -20,36 +20,36 @@ const bot = new TelegramBot(process.env.TOKEN, {
 });
 
 bot.on("message", async (msg) => {
-  const user_id = msg.from.id;
+  if (msg.from.id == process.env.USER_ID) {
+    let xl = require("excel4node");
+    let wb = new xl.Workbook();
+    const ws = wb.addWorksheet("Sheet 1");
 
-  let xl = require("excel4node");
-  let wb = new xl.Workbook();
-  const ws = wb.addWorksheet("Sheet 1");
+    ws.cell(1, 1).string("№");
+    ws.cell(1, 2).string("FISh");
+    ws.cell(1, 3).string("Telefon");
 
-  ws.cell(1, 1).string("№");
-  ws.cell(1, 2).string("FISh");
-  ws.cell(1, 3).string("Telefon");
+    const userList = await User.find();
 
-  const userList = await User.find();
-
-  for (let i = 0; i < userList.length; i++) {
-    ws.cell(i + 2, 1).number(i + 1);
-    ws.cell(i + 2, 2).string(`${userList[i].name}`);
-    ws.cell(i + 2, 3).string(`${userList[i].phone}`);
-  }
-
-  ws.column(1).setWidth(5);
-  ws.column(2).setWidth(40);
-  ws.column(3).setWidth(30);
-
-  wb.write("Excel.xlsx", async function (err, stats) {
-    if (err) {
-      bot.sendMessage(user_id, "Xatolik yuz berdi");
-    } else {
-      let file_path = path.join(__dirname, "Excel.xlsx");
-      await bot.sendDocument(user_id, (document = file_path));
+    for (let i = 0; i < userList.length; i++) {
+      ws.cell(i + 2, 1).number(i + 1);
+      ws.cell(i + 2, 2).string(`${userList[i].name}`);
+      ws.cell(i + 2, 3).string(`${userList[i].phone}`);
     }
-  });
+
+    ws.column(1).setWidth(5);
+    ws.column(2).setWidth(40);
+    ws.column(3).setWidth(30);
+
+    wb.write("Excel.xlsx", async function (err, stats) {
+      if (err) {
+        bot.sendMessage(process.env.USER_ID, "Xatolik yuz berdi");
+      } else {
+        let file_path = path.join(__dirname, "Excel.xlsx");
+        await bot.sendDocument(process.env.USER_ID, (document = file_path));
+      }
+    });
+  }
 });
 
 app.use(express.urlencoded({ extended: true }));
