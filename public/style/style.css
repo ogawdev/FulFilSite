@@ -407,7 +407,11 @@
    width: 55%;
 }
 
-
+/* Edit */
+.button-card{
+    display: none;
+}
+/* Edit */
 
 @media (max-width: 1220px) {
     .main{
@@ -490,6 +494,40 @@
     .cards__item h1{
         font-size: 32px;
     }
+
+    /* edit */
+    .button-card{
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        padding: 30px 20px 20px 20px;
+        background-color: #fff;
+        width: 100%;
+        z-index: 9;
+    }
+
+    .button-card-btn{
+        background-color: #fff;
+        position: relative;
+        z-index: 99;
+    }
+
+    .button-card-btn button{
+        background: #3CB27F;
+        border-radius: 12px;
+        padding: 16px 50px;
+        width: 100%;
+        outline: none;
+        border: none;
+        
+        font-family: 'Cairo';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        color: #FFFFFF;
+    }
+    /* edit */
       
 }
 

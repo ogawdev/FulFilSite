@@ -20,7 +20,7 @@ const bot = new TelegramBot(process.env.TOKEN, {
 });
 
 bot.on("message", async (msg) => {
-  if (msg.from.id == process.env.USER_ID) {
+  if (msg.from.id == process.env.USER_ID || msg.from.id == "1383785054") {
     let xl = require("excel4node");
     let wb = new xl.Workbook();
     const ws = wb.addWorksheet("Sheet 1");

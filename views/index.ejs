@@ -98,23 +98,34 @@
         <form action="/" method="post">
           <label>Ismingiz</label>
           <input
+            id="name"
             name="name"
             type="text"
             placeholder="Ismingizni kiriting"
-          /><br /><br />
+            required
+          />
+          <br /><br />
 
           <label>Telefon raqamingiz</label>
           <input
+            id="phone"
             name="phone"
             type="text"
             placeholder="Telefon raqamingizni kirting"
-            value="+998"
+            required
           />
-
           <button type="submit">Ishtirok etish</button>
         </form>
       </div>
     </div>
+
+    <!-- edit -->
+    <div class="button-card">
+      <div class="button-card-btn">
+        <button class="button-card__btn">Ishtirok etish</button>
+      </div>
+    </div>
+    <!-- edit -->
 
     <!-- Target script -->
     <img
