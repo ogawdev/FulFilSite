@@ -33,9 +33,3 @@ fa__x.addEventListener('click', () => {
  fbq("init", "514646110844168");
  fbq("track", "PageView");
 
- <img
-   height="1"
-   width="1"
-   style="display:none"
-   src="https://www.facebook.com/tr?id=514646110844168&ev=PageView&noscript=1"
- />;
